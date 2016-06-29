@@ -8,18 +8,17 @@ namespace AngleProj
 {
     class Angle
     {
-        private int absoluteSeconds;
         public int Degrees { get; set; }
         public int Minutes { get; set; }
         public int Seconds { get; set; }
-        public long AbsoluteSeconds { get; set; }
+        public long AbsoluteSeconds { get { return Degrees * 3600 + Minutes * 60 + Seconds; } }
 
         public Angle(int degrees = 0, int minutes = 0, int seconds = 0)
         {
             Degrees = Math.Abs(degrees);
             Minutes = Math.Abs(minutes);
             Seconds = Math.Abs(seconds);
-            AbsoluteSeconds = Degrees * 3600 + Minutes * 60 + Seconds;
+            //AbsoluteSeconds = Degrees * 3600 + Minutes * 60 + Seconds;
 
             this.Customize();
         }
@@ -28,7 +27,7 @@ namespace AngleProj
             Degrees = Math.Abs(angle.Degrees);
             Minutes = Math.Abs(angle.Minutes);
             Seconds = Math.Abs(angle.Seconds);
-            AbsoluteSeconds = Degrees * 3600 + Minutes * 60 + Seconds;
+            //AbsoluteSeconds = Degrees * 3600 + Minutes * 60 + Seconds;
         }
 
         private void Customize()
@@ -52,7 +51,7 @@ namespace AngleProj
 
         public override string ToString()
         {
-            return string.Format("Degree: {0}, Min: {1}, Sec: {2}", Degrees, Minutes, Seconds);
+            return string.Format("{0}°, {1}\', {2}\"", Degrees, Minutes, Seconds);
         }
         public static Angle operator +(Angle firstObj, Angle secondObj)
         {
